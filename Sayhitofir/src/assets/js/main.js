@@ -1,22 +1,36 @@
 // assets/js/main.js
 document.addEventListener("DOMContentLoaded", () => {
-  // --- Existing animations (from earlier) ---
+  // Initialize GSAP
+  gsap.registerPlugin(ScrollTrigger);
 
   // Hero text animation
-  gsap.from(".hero-content h2", {
-    y: 50,
+  gsap.from(".hero-title .line", {
+    y: 100,
     opacity: 0,
-    duration: 1,
-    ease: "power3.out"
+    duration: 1.2,
+    stagger: 0.2,
+    ease: "power4.out"
   });
 
   gsap.from(".cta-button", {
-    y: 30,
     opacity: 0,
-    delay: 0.5,
+    y: 50,
     duration: 1,
+    delay: 0.8,
     ease: "power3.out"
   });
+
+  // Header background on scroll
+  ScrollTrigger.create({
+    start: "top -80",
+    end: 99999,
+    toggleClass: {
+      className: 'header-scrolled',
+      targets: 'header'
+    }
+  });
+
+  // --- Existing animations (from earlier) ---
 
   // Programs
   gsap.from("#programs h2", {
@@ -31,14 +45,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   gsap.from(".program-card", {
     scrollTrigger: {
-      trigger: ".program-grid",
-      start: "top 85%",
+      trigger: ".programs",
+      start: "top center",
+      toggleActions: "play none none reverse"
     },
     y: 100,
     opacity: 0,
-    stagger: 0.3,
     duration: 1,
-    ease: "power2.out"
+    stagger: 0.3,
+    ease: "power3.out"
   });
 
   // Testimonials
@@ -111,5 +126,50 @@ document.addEventListener("DOMContentLoaded", () => {
         scrub: true           // smooth scroll-linked animation
       }
     });
+  });
+
+  // --- Header Scroll Effect ---
+  const header = document.querySelector('header');
+
+  window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+      } else {
+          header.classList.remove('scrolled');
+      }
+  });
+
+  // Hero animations
+  const tl = gsap.timeline();
+  
+  tl.to(".hero-title .line", {
+      y: 0,
+      opacity: 1,
+      duration: 1.2,
+      ease: "power4.out",
+      stagger: 0.2
+  })
+  .to(".hero-subtitle", {
+      opacity: 1,
+      duration: 1,
+      ease: "power3.out"
+  }, "-=0.8")
+  .to(".cta-button", {
+      opacity: 1,
+      duration: 1,
+      ease: "power3.out"
+  }, "-=0.8");
+
+  // Handle image loading
+  const images = document.querySelectorAll('.program-card img');
+  images.forEach(img => {
+      img.style.opacity = '0';
+      img.onload = function() {
+          gsap.to(this, {
+              opacity: 0.7,
+              duration: 0.5,
+              ease: "power2.out"
+          });
+      };
   });
 });
