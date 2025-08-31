@@ -1,22 +1,230 @@
-/* This file contains additional styles that complement the main.css file, possibly for specific components or pages. */
-
-.cta-button {
-    display: inline-block;
-    padding: 12px 30px;
-    background: transparent;
-    border: 2px solid #fff;
-    border-radius: 30px;
-    color: #fff;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 16px;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-    margin-top: 20px;
+/* =============================
+   GLOBAL STYLES
+============================= */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  background: #111;
+  color: #fff;
 }
 
+/* Reset links */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s ease;
+}
+a:hover {
+  opacity: 0.8;
+}
+
+/* =============================
+   HEADER
+============================= */
+#header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+}
+
+#navigation ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* =============================
+   HERO
+============================= */
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: url("../images/hero-bg.jpg") no-repeat center center/cover;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: left;           /* align left */
+  top: 35%;
+  left: 10%;                  /* push content away from the edge */
+  max-width: 600px;
+  color: #fff;
+}
+
+.hero-content h2 {
+  font-size: 3.5rem;          /* larger font */
+  font-weight: 800;           /* bolder */
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.cta-button {
+  margin-top: 30px;
+  background: #ff6600;
+  padding: 16px 40px;         /* bigger button */
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 40px;
+  display: inline-block;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  transition: 0.3s ease;
+}
 .cta-button:hover {
-    background: #fff;
-    color: #000;
-    transform: translateY(-2px);
+  background: #e05500;
+  transform: translateY(-3px);
+}
+
+/* =============================
+   PROGRAMS
+============================= */
+.programs {
+  padding: 100px 50px;
+  background: url("../images/programs-bg.jpg") no-repeat center/cover;
+  position: relative;
+}
+
+.programs h2 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.program-grid {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+.program-card {
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  transition: transform .3s;
+}
+.program-card:hover {
+  transform: translateY(-10px);
+}
+
+/* =============================
+   TESTIMONIALS
+============================= */
+.testimonials {
+  padding: 100px 50px;
+  background: url("../images/testimonials-bg.jpg") no-repeat center/cover fixed;
+  text-align: center;
+  position: relative;
+}
+
+.testimonial-slider {
+  margin-top: 40px;
+}
+
+/* =============================
+   CONTACT
+============================= */
+.contact {
+  padding: 100px 50px;
+  background: url("../images/contact-bg.jpg") no-repeat center/cover;
+  position: relative;
+}
+
+.contact form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact input,
+.contact textarea {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+}
+
+.submit-btn {
+  background: #ff6600;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+.submit-btn:hover {
+  background: #e05500;
+}
+
+/* =============================
+   FOOTER
+============================= */
+#footer {
+  background: url("../images/footer-bg.jpg") no-repeat center/cover;
+  padding: 50px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+/* =============================
+   PARALLAX + OVERLAYS
+============================= */
+.programs, .testimonials, .contact, #footer {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+}
+
+.programs::before,
+.testimonials::before,
+.contact::before,
+#footer::before {
+  content: "";
+  position: absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 0;
+}
+
+.programs > *, 
+.testimonials > *, 
+.contact > *, 
+#footer > * {
+  position: relative;
+  z-index: 1;
 }
